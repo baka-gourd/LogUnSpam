@@ -1,20 +1,28 @@
 buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.spongepowered.mixin'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
+mixin {
+    add sourceSets.main, 'mixins.log_un_spam.refmap.json'
+    config 'log_un_spam.mixins.json'
+}
+
 version = '1.0'
-group = 'com.yourname.modid' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'modid'
+group = 'com.nullpinter.log_un_spam' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'log_un_spam'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
@@ -41,7 +49,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-
+            arg "-mixin.config=log_un_spam.mixins.json"
             // Recommended logging data for a userdev environment
             // The markers can be changed as needed.
             // "SCAN": For mods scan.
@@ -63,7 +71,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-
+            arg "-mixin.config=log_un_spam.mixins.json"
             // Recommended logging data for a userdev environment
             // The markers can be changed as needed.
             // "SCAN": For mods scan.
@@ -118,7 +126,7 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.35'
-
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
     // compile "some.group:artifact:version"
@@ -143,13 +151,14 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "examplemod",
-            "Specification-Vendor": "examplemodsareus",
+            "Specification-Title": "log_un_spam",
+            "Specification-Vendor": "Nullpinter",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
             "Implementation-Vendor" :"examplemodsareus",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+            "MixinConfigs": "log_un_spam.mixin.json"
         ])
     }
 }

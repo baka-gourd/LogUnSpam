@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.nullpinter.logUnSpam.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "log_un_spam.refmap.json",
+  "mixins": [
+    "Log4jMixin"
+  ]
+}
