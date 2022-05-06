@@ -20,6 +20,7 @@ import static com.nullpinter.logUnSpam.util.Utils.shouldLog;
 public final class Log4jFilter extends AbstractFilter {
     @Override
     public Result filter(final LogEvent event) {
+        if (ConfigHandler.classFilterWords.contains(event.getLoggerFqcn())) return Result.DENY;
         Message m = event.getMessage();
         String s = m.getFormattedMessage();
         for (String regex : ConfigHandler.regexpFilterWords) {
@@ -39,7 +40,7 @@ public final class Log4jFilter extends AbstractFilter {
         return null;
     }
 
-    public static void apply(){
+    public static void apply() {
         ((Logger) LogManager.getRootLogger()).addFilter(new Log4jFilter());
     }
 }

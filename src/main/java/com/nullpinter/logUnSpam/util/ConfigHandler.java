@@ -14,11 +14,13 @@ public class ConfigHandler {
     public static ForgeConfigSpec CONFIG;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> COMMON_FILTER_WORDS;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> REGEXP_FILTER_WORDS;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> CLASS_FILTER_WORDS;
 
     public static final List<String> DefaultList = Collections.singletonList("");
 
     public static List<? extends String> commonFilterWords;
     public static List<? extends String> regexpFilterWords;
+    public static List<? extends String> classFilterWords;
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -30,6 +32,9 @@ public class ConfigHandler {
         REGEXP_FILTER_WORDS = builder.comment("Regular expressions that will be filtered out")
                 .worldRestart()
                 .defineList("regexpFilterWords",DefaultList,o -> o instanceof String);
+        CLASS_FILTER_WORDS = builder.comment("Fqcn that will be filtered out")
+                .worldRestart()
+                .defineList("classFilterWords",DefaultList,o -> o instanceof String);
         builder.pop();
         CONFIG = builder.build();
     }
@@ -37,8 +42,10 @@ public class ConfigHandler {
     public static void bakeConfig(){
         commonFilterWords = COMMON_FILTER_WORDS.get();
         regexpFilterWords = REGEXP_FILTER_WORDS.get();
+        classFilterWords = CLASS_FILTER_WORDS.get();
         regexpFilterWords.remove("");
         commonFilterWords.remove("");
+        classFilterWords.remove("");
     }
 
     @SubscribeEvent
