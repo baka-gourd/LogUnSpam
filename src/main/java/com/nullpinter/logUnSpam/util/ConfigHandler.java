@@ -37,6 +37,8 @@ public class ConfigHandler {
     public static void bakeConfig(){
         commonFilterWords = COMMON_FILTER_WORDS.get();
         regexpFilterWords = REGEXP_FILTER_WORDS.get();
+        regexpFilterWords.remove("");
+        commonFilterWords.remove("");
     }
 
     @SubscribeEvent

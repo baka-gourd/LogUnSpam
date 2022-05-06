@@ -13,7 +13,7 @@ public class JavaFilter implements Filter {
         return shouldLog(s);
     }
 
-    public static void applyFilter(){
+    public static void apply(){
         Logger.getLogger("").setFilter(new JavaFilter());
     }
 }

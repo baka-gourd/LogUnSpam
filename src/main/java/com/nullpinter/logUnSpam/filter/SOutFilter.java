@@ -19,7 +19,7 @@ public class SOutFilter extends PrintStream {
         }
     }
 
-    public static void applyFilter() {
+    public static void apply() {
         System.setOut(new SOutFilter(System.out));
     }
 }
