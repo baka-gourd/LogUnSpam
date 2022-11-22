@@ -4,7 +4,7 @@ import com.nullpinter.logUnSpam.LogUnSpam;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 
 import java.util.Collections;
 import java.util.List;
@@ -49,7 +49,7 @@ public class ConfigHandler {
     }
 
     @SubscribeEvent
-    public static void onModConfigEvent(final ModConfig.ModConfigEvent configEvent) {
+    public static void onModConfigEvent(final ModConfigEvent configEvent) {
         if (configEvent.getConfig().getSpec() == CONFIG) {
             bakeConfig();
         }

@@ -1,11 +1,7 @@
 package com.nullpinter.logUnSpam.filter;
 
-import com.nullpinter.logUnSpam.LogUnSpam;
 import com.nullpinter.logUnSpam.util.ConfigHandler;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Marker;
-import org.apache.logging.log4j.core.Filter;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.Logger;
 import org.apache.logging.log4j.core.config.plugins.Plugin;
@@ -13,8 +9,6 @@ import org.apache.logging.log4j.core.filter.AbstractFilter;
 import org.apache.logging.log4j.message.Message;
 
 import java.util.regex.Pattern;
-
-import static com.nullpinter.logUnSpam.util.Utils.shouldLog;
 
 @Plugin(name = "Log4jFilter", category = "Core", elementType = "filter", printObject = true)
 public final class Log4jFilter extends AbstractFilter {
