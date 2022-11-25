@@ -1,6 +1,7 @@
 package com.nullpinter.logUnSpam.util;
 
 import java.util.regex.Pattern;
+import gblodb.logUnSpam.util.ConfigHandler;
 
 public class Utils {
     public static boolean shouldLog(String s) {

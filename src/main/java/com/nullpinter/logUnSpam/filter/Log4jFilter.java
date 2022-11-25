@@ -1,6 +1,6 @@
 package com.nullpinter.logUnSpam.filter;
 
-import com.nullpinter.logUnSpam.util.ConfigHandler;
+import gblodb.logUnSpam.util.ConfigHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.Logger;
