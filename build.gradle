@@ -1,23 +1,18 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-    }
+plugins {
+    id 'net.minecraftforge.gradle' version '5.1.+'
 }
-apply plugin: 'net.minecraftforge.gradle'
 
-version = '1.0-1.18'
-group = 'com.nullpinter.log_un_spam'
-archivesBaseName = 'log_un_spam'
+group = 'gblodb'
+version = '1.0-1.12'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+java {
+    archivesBaseName = 'LogUnSpam'
+    toolchain.languageVersion = JavaLanguageVersion.of(8)
+}
 
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'official', version: '1.18.2'
+    mappings channel: 'stable', version: '39-1.12'
+
     runs {
         client {
             workingDirectory project.file('run')
@@ -26,7 +21,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                log_un_spam {
+                logunspam {
                     source sourceSets.main
                 }
             }
@@ -39,22 +34,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                log_un_spam {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        data {
-            workingDirectory project.file('run')
-
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-
-            args '--mod', 'log_un_spam', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-
-            mods {
-                log_un_spam {
+                logunspam {
                     source sourceSets.main
                 }
             }
@@ -64,22 +44,28 @@ minecraft {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+repositories {}
+
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.0'
+    minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
 }
 
 jar {
     manifest {
         attributes([
-            "Specification-Title": "log_un_spam",
-            "Specification-Vendor": "Nullpinter, GBLodb",
-            "Specification-Version": "1",
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"Nullpinter, GBLodb",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "Specification-Title"     : "logunspam",
+                "Specification-Vendor"    : "Nullpinter, GBLodb",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : "Nullpinter, GBLodb",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
 
 jar.finalizedBy('reobfJar')
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

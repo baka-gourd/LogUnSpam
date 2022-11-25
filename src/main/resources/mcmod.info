@@ -1,0 +1,19 @@
+[
+    {
+        "modid": "log_un_spam",
+        "name": "LogUnSpam",
+        "description": "Filter spam from any mods.",
+        "version": "${version}",
+        "mcversion": "${mcversion}",
+        "url": "",
+        "updateUrl": "",
+        "authorList": [
+            "Nullpinter",
+            "GBLodb"
+        ],
+        "credits": "",
+        "logoFile": "",
+        "screenshots": [],
+        "dependencies": []
+    }
+]
