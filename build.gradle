@@ -9,7 +9,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle'
 
-version = '1.0-1.18'
+version = '1.1-1.18'
 group = 'com.nullpinter.log_un_spam'
 archivesBaseName = 'log_un_spam'
 
