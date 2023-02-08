@@ -20,13 +20,13 @@ public class LogUnSpam {
 
     public LogUnSpam() throws NoSuchFieldException {
         LOGGER.info("LogUnSpam loaded.");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigHandler.CONFIG);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigHandler.commonSpec);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
     }
 
     private void setup(FMLCommonSetupEvent event) {
             LOGGER.info("Applying filters...");
-            LOGGER.info("Filter has {} common rule(s), {} regex rule(s).",ConfigHandler.commonFilterWords.size(),ConfigHandler.regexpFilterWords.size());
+            LOGGER.info("Filter has {} common rule(s), {} regex rule(s).",ConfigHandler.COMMON.commonFilterWords.get().size(),ConfigHandler.COMMON.regexpFilterWords.get().size());
             JavaFilter.apply();
             SOutFilter.apply();
             Log4jFilter.apply();

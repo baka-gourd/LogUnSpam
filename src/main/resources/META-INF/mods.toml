@@ -5,6 +5,7 @@ license="Apache License 2.0"
 [[mods]]
 modId="log_un_spam"
 version="${file.jarVersion}"
+authors="Nullpinter, GBLodb"
 displayName="logUnSpam"
 description='''
 Filter spam from any mods.
@@ -20,6 +21,6 @@ Filter spam from any mods.
 [[dependencies.log_un_spam]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18)"
+    versionRange="[1.18.,]"
     ordering="NONE"
     side="BOTH"
