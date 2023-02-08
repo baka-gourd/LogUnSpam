@@ -1,6 +1,5 @@
 package com.nullpinter.logUnSpam.util;
 
-import com.google.common.collect.ImmutableList;
 import com.nullpinter.logUnSpam.LogUnSpam;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -9,8 +8,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = LogUnSpam.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
