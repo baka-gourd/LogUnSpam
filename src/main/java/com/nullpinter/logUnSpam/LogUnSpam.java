@@ -18,15 +18,15 @@ public class LogUnSpam {
     public static final String MOD_ID = "log_un_spam";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
-    public LogUnSpam() throws NoSuchFieldException {
+    public LogUnSpam() {
         LOGGER.info("LogUnSpam loaded.");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigHandler.CONFIG);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigHandler.commonSpec);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
     }
 
     private void setup(FMLCommonSetupEvent event) {
             LOGGER.info("Applying filters...");
-            LOGGER.info("Filter has {} common rule(s), {} regex rule(s).",ConfigHandler.commonFilterWords.size(),ConfigHandler.regexpFilterWords.size());
+            LOGGER.info("Filter has {} common rule(s), {} regex rule(s).",ConfigHandler.COMMON.commonFilterWords.get().size(),ConfigHandler.COMMON.regexpFilterWords.get().size());
             JavaFilter.apply();
             SOutFilter.apply();
             Log4jFilter.apply();

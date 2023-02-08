@@ -20,17 +20,17 @@ import static com.nullpinter.logUnSpam.util.Utils.shouldLog;
 public final class Log4jFilter extends AbstractFilter {
     @Override
     public Result filter(final LogEvent event) {
-        if (ConfigHandler.classFilterWords.contains(event.getLoggerFqcn())) return Result.DENY;
+        if (ConfigHandler.COMMON.classFilterWords.get().contains(event.getLoggerFqcn())) return Result.DENY;
         Message m = event.getMessage();
         String s = m.getFormattedMessage();
-        for (String regex : ConfigHandler.regexpFilterWords) {
+        for (String regex : ConfigHandler.COMMON.regexpFilterWords.get()) {
             if (regex.equals("")) continue;
             if (Pattern.matches(regex, s)) {
                 return Result.DENY;
             }
         }
 
-        for (String word : ConfigHandler.commonFilterWords) {
+        for (String word : ConfigHandler.COMMON.commonFilterWords.get()) {
             if (word.equals("")) continue;
             if (s.contains(word)) {
                 return Result.DENY;
