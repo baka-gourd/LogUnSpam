@@ -1,0 +1,18 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+issueTrackerURL="https://github.com/baka-gourd/LogUnSpam"
+license = "Apache-2.0"
+
+[[mods]]
+modId = "logunspam"
+version = "${version}"
+displayName = "Logunspam"
+authors = "Nullpinter"
+description = "Prevent spam in logger"
+
+[[dependencies.logunspam]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1]"
+ordering="NONE"
+side="BOTH"

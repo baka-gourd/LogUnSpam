@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "logunspam",
+  "version": "${version}",
+
+  "name": "Logunspam",
+  "description": "Prevent spam in logger",
+  "authors": [
+    "Nullpinter"
+  ],
+  "contact": {
+    "homepage": "https://nptr.cc/",
+    "sources": "https://github.com/baka-gourd/LogUnSpam"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/logunspam/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "cc.nptr.logunspam.fabric.LogunspamFabric"
+    ]
+  },
+  "mixins": [],
+
+  "depends": {
+    "fabricloader": ">=0.14.19",
+    "fzzy_config": ">=0.7.0",
+    "minecraft": "~1.20.1",
+    "java": ">=17"
+  }
+}

@@ -1,0 +1,89 @@
+plugins {
+    id 'java'
+    id 'xyz.wagyourtail.unimined' version '1.4.1'
+}
+
+apply from: 'gradle/scripts/helpers.gradle'
+
+assertProperty 'mod_version'
+assertProperty 'mod_id'
+assertProperty 'mod_name'
+assertProperty 'root_package'
+
+group propertyString('root_package')
+version propertyString('mod_version')
+
+base {
+    archivesName.set(propertyString('mod_id'))
+}
+
+sourceSets {
+    fabric
+    forge
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "sponge"
+        url = "https://repo.spongepowered.org/maven"
+    }
+}
+
+unimined.minecraft {
+    version project.minecraft_version
+
+    mappings {
+        intermediary()
+        mojmap()
+        parchment("1.20.1", "2023.09.03")
+
+
+        devFallbackNamespace "intermediary"
+    }
+
+    defaultRemapJar = false
+}
+
+unimined.minecraft(sourceSets.fabric) {
+    combineWith(sourceSets.main)
+
+    fabric {
+        loader project.fabric_version
+    }
+
+    defaultRemapJar = true
+}
+
+unimined.minecraft(sourceSets.forge) {
+    combineWith(sourceSets.main)
+
+    neoForged {
+        loader project.forge_version
+//        mixinConfig "modid.mixins.json"
+    }
+
+    defaultRemapJar = true
+}
+
+jar {
+    enabled = false
+}
+
+apply from: 'gradle/scripts/dependencies.gradle'
+
+processFabricResources {
+    inputs.property "version", propertyString('mod_version')
+
+    filesMatching("fabric.mod.json") {
+        expand "version": propertyString('mod_version')
+    }
+}
+
+processForgeResources {
+    inputs.property "version", propertyString('mod_version')
+
+    filesMatching("META-INF/mods.toml") {
+        expand "version": propertyString('mod_version')
+    }
+}
