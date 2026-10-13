@@ -39,9 +39,10 @@ public class LogUnSpam {
         modEventBus.register(Config.class);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us.
-        // The COMMON config is read before FMLCommonSetupEvent is fired, so the filters below
-        // already see the user's rules.
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        // LOCAL replaces the old COMMON type in 26.3; like COMMON it is loaded on both sides from the
+        // config folder and read before FMLCommonSetupEvent, so the filters below already see the
+        // user's rules. The file is config/logunspam-local.toml.
+        modContainer.registerConfig(ModConfig.Type.LOCAL, Config.SPEC);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

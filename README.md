@@ -2,7 +2,7 @@
 
 Simply a mod to filter logs that you don't want.
 
-Filter rules live in `config/logunspam-common.toml` and are applied to every log sink the game uses:
+Filter rules live in `config/logunspam-local.toml` and are applied to every log sink the game uses:
 
 | Option | What it matches |
 | --- | --- |
