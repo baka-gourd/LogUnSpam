@@ -1,11 +1,14 @@
-package com.nullpinter.logUnSpam.filter;
+package cc.nptr.logunspam.filter;
+
+import static cc.nptr.logunspam.util.Utils.shouldLog;
 
 import java.util.logging.Filter;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
-import static com.nullpinter.logUnSpam.util.Utils.shouldLog;
-
+/**
+ * Covers the {@code java.util.logging} sink.
+ */
 public class JavaFilter implements Filter {
     @Override
     public boolean isLoggable(LogRecord record) {
@@ -13,7 +16,7 @@ public class JavaFilter implements Filter {
         return shouldLog(s);
     }
 
-    public static void apply(){
+    public static void apply() {
         Logger.getLogger("").setFilter(new JavaFilter());
     }
 }

@@ -1,11 +1,13 @@
-package com.nullpinter.logUnSpam.filter;
+package cc.nptr.logunspam.filter;
 
+import static cc.nptr.logunspam.util.Utils.shouldLog;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-import static com.nullpinter.logUnSpam.util.Utils.shouldLog;
-
+/**
+ * Covers the plain {@link System#out} sink, which several mods still write to.
+ */
 public class SOutFilter extends PrintStream {
 
     public SOutFilter(OutputStream out) {
