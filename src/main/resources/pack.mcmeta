@@ -1,7 +1,6 @@
 {
     "pack": {
         "description": "LogUnSpam resources",
-        "min_format": 107,
-        "max_format": 107
+        "pack_format": 48
     }
 }

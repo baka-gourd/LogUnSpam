@@ -17,4 +17,4 @@ Filter rules live in `config/logunspam-common.toml` and are applied to every log
 ./gradlew build         # produce build/libs/logunspam-<version>.jar
 ```
 
-Requires JDK 25.
+Requires JDK 21.
